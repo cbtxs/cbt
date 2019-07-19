@@ -1,0 +1,491 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass[12pt,a4paper]{article}
+\input{en_preamble.tex}
+\input{xecjk_preamble.tex}
+
+\title{重心坐标函数}
+\author{陈春雨}
+\date{\chntoday}
+\begin{document}
+\maketitle
+\newpage
+\section{一维情况}
+一维中只用两个点$x_0,x_1$,找两个定义在$[x_0,x_1]$上的线性函数$f_0(x),f_1(x)$，满足：
+\begin{align}
+\begin{cases}
+f_i(x_i)=1&{}\\
+f_i(x_j)=0&i\ne j
+\end{cases}
+\qquad i=0,1
+\end{align}
+\subsection*{方法一：待定系数法}
+假设
+$$
+f_i(x)=k_0^{(i)}x+k_1^{(i)},\qquad i=0,1
+$$
+得到方程：
+$$
+\begin{cases}
+k_0^{(0)}x_0+k_1^{(0)}=1\\
+k_0^{(0)}x_1+k_1^{(0)}=0
+\end{cases},\qquad
+\begin{cases}
+k_0^{(1)}x_0+k_1^{(1)}=0\\
+k_0^{(1)}x_1+k_1^{(1)}=1
+\end{cases}
+$$
+则根据克拉默法则
+$$
+k_0^{(0)}=\frac{\begin{vmatrix}
+                               1&1\\
+                               0&1
+                              \end{vmatrix}}{\begin{vmatrix}
+                                              x_0&1\\
+                                              x_1&1
+                                             \end{vmatrix}}=\frac{1}{x_0-x_1},\qquad
+k_1^{(0)}=\frac{\begin{vmatrix}
+                               x_0&1\\
+                               x_1&0
+                              \end{vmatrix}}{\begin{vmatrix}
+                                              x_0&1\\
+                                              x_1&1
+                                             \end{vmatrix}}=\frac{-x_1}{x_0-x_1}                                             
+$$
+$$
+k_0^{(1)}=\frac{\begin{vmatrix}
+                               0&1\\
+                               1&1
+                              \end{vmatrix}}{\begin{vmatrix}
+                                              x_0&1\\
+                                              x_1&1
+                                             \end{vmatrix}}=\frac{-1}{x0-x1},\qquad
+k_1^{(1)}=\frac{\begin{vmatrix}
+                               x_0&0\\
+                               x_1&1
+                              \end{vmatrix}}{\begin{vmatrix}
+                                              x_0&1\\
+                                              x_1&1
+                                             \end{vmatrix}}=\frac{x_0}{x_0-x_1}                                             
+$$
+这样就得到了两个基函数,且他们的梯度为：
+$$
+\nabla f_0(x)=k_0^{(0)}\qquad \nabla f_1(x)=k_0^{(1)}
+$$
+\subsection*{方法二：长度函数}
+令$f_0(x)$是$x$到$x_1$的长度与$x_0$到$x_1$的长度之比，$f_1(x)$是$x$到$x_0$的长度与$x_1$到$x_0$的长度之比，所以$f_0,f_1$满足（1）条件，且
+$$
+\begin{cases}
+f_0(x)=\frac{x-x_1}{x_0-x_1}\\
+f_1(x)=\frac{x-x_0}{x_1-x_0}
+\end{cases}
+$$
+所以$f_0,f_1$是线性函数，所以$f_0,f_1$是要找的两个函数。
+因为$f_0(x)$是$x$到$x_1$的长度与$x_0$到$x_1$的长度之比，所以$f_0$沿着$x_1$到$x_0$的方向时$f_0(x)$函数值增长，所以其梯度方向为$x_1$到$x_0$的方向，又因为线性函数的梯度恒定不变，所以其大小为$$|\frac{f_0(x_0)-f_0(x_1)}{x_0-x_1}|=|\frac{1}{x_0-x_1}|$$\\
+所以$f_0(x)$的梯度为：
+$$
+\nabla f_0(x)=sgn(x_0-x_1)|\frac{1}{x_0-x_1}|=\frac{1}{x_0-x_1}
+$$
+同理，$f_1(x)$的梯度为：
+$$
+\nabla f_1(x)=sgn(x_1-x_0)|\frac{1}{x_1-x_0}|=\frac{1}{x_1-x_0}
+$$
+\section{二维情况}
+二维空间中，由三个不共线的点$(x_0,y_0)(x_1,y_1)(x_2,y_2)$找到三个定义在$(x_0,y_0)(x_1,y_1)(x_2,y_2)$围成的三角形区域的线性函数$f_0(x,y),f_1(x,y),f_2(x,y)$,满足：
+\begin{align}
+\begin{cases}
+f_i(x_i,y_i)=1&{}\\
+f_i(x_j,y_j)=0&i\ne j
+\end{cases}
+\qquad i=0,1,2
+\end{align}
+\subsection*{方法一：待定系数法}
+假设
+$$
+f_i(x,y)=a_ix+b_iy+c_i\qquad i=0,1,2
+$$
+得到方程：
+$$
+\begin{cases}
+a_0x_0+b_0y_0+c_0=1\\
+a_0x_1+b_0y_1+c_0=0\\
+a_0x_2+b_0y_2+c_0=0
+\end{cases},\qquad
+\begin{cases}
+a_1x_0+b_1y_0+c_1=0\\
+a_1x_1+b_1y_1+c_1=1\\
+a_1x_2+b_1y_2+c_1=0
+\end{cases}
+\begin{cases}
+a_2x_0+b_2y_0+c_2=0\\
+a_2x_1+b_2y_1+c_2=0\\
+a_2x_2+b_2y_2+c_2=1
+\end{cases}
+$$
+设$\lambda=\begin{vmatrix}
+                           x_0&y_0&1\\
+                           x_1&y_1&1\\
+                           x_2&y_2&1
+                         \end{vmatrix}$,根据克拉默法则：
+$$
+a_0=\frac{\begin{vmatrix}
+            1&y_0&1\\
+            0&y_1&1\\
+            0&y_2&1
+          \end{vmatrix}}{\lambda},\qquad
+b_0=\frac{\begin{vmatrix}
+            x_0&1&1\\
+            x_1&0&1\\
+            x_2&0&1
+          \end{vmatrix}}{\lambda},\qquad
+c_0=\frac{\begin{vmatrix}
+             x_0&y_0&1\\
+             x_1&y_1&0\\
+             x_2&y_2&0
+          \end{vmatrix}}{\lambda}
+$$
+$$
+a_1=\frac{\begin{vmatrix}
+            0&y_0&1\\
+            1&y_1&1\\
+            0&y_2&1
+          \end{vmatrix}}{\lambda},\qquad
+b_1=\frac{\begin{vmatrix}
+            x_0&0&1\\
+            x_1&1&1\\
+            x_2&0&1
+          \end{vmatrix}}{\lambda},\qquad
+c_1=\frac{\begin{vmatrix}
+             x_0&y_0&0\\
+             x_1&y_1&1\\
+             x_2&y_2&0
+          \end{vmatrix}}{\lambda}
+$$
+$$
+a_2=\frac{\begin{vmatrix}
+            0&y_0&1\\
+            0&y_1&1\\
+            1&y_2&1
+          \end{vmatrix}}{\lambda},\qquad
+b_2=\frac{\begin{vmatrix}
+            x_0&0&1\\
+            x_1&0&1\\
+            x_2&1&1\\
+          \end{vmatrix}}{\lambda},\qquad
+c_2=\frac{\begin{vmatrix}
+             x_0&y_0&0\\
+             x_1&y_1&0\\
+             x_2&y_2&1
+          \end{vmatrix}}{\lambda}
+$$
+由此就得到了三个基函数，且他们的梯度为：
+$$
+\nabla f_0(x,y)=(a_0,b_0),\nabla f_1(x,y)=(a_1,b_1),\nabla f_1(x,y)=(a_1,b_1)
+$$
+\subsection*{方法二：面积函数}
+假设$(x_0,y_0)\rightarrow(x_1,y_1)\rightarrow(x_2,y_2)$是逆时针方向\\
+\begin{itemize}
+\item 令$f_0(x,y)$表示$[(x,y)(x_1,y_1)(x_2,y_2)]$围成的三角形的面积比上$[(x_0,y_0)(x_1,y_1)(x_2,y_2)]$围成的三角形面积.\\
+\item $f_1(x,y)$表示$[(x_0,y_0)(x,y)(x_2,y_2)]$围成的三角形的面积比上$[(x_0,y_0)(x_1,y_1)(x_2,y_2)]$围成的三角形面积.\\
+\item $f_2(x,y)$表示$[(x_0,y_0)(x_1,y_1)(x,y)]$围成的三角形的面积比上$[(x_0,y_0)(x_1,y_1)(x_2,y_2)]$围成的三角形面积.\\
+\end{itemize}
+这时，$f_0(x,y),f_1(x,y),f_2(x,y)$满足条件（2）。\\
+用$\tau$来表示总面积，$\tau_i$来表示$f_i(x,y)$对应的面积，由三角形面积公式可得
+$$
+\tau_0=\frac{1}{2}\begin{vmatrix}
+x&y&1\\
+x_1&y_1&1\\
+x_2&y_2&1
+\end{vmatrix},\qquad
+\tau_1=\frac{1}{2}\begin{vmatrix}
+x_0&y_0&1\\
+x&y&1\\
+x_2&y_2&1
+\end{vmatrix}
+$$
+
+$$
+\tau_2=\frac{1}{2}\begin{vmatrix}
+x_0&y_0&1\\
+x_1&y_1&1\\
+x&y&1
+\end{vmatrix},\qquad
+\tau=\frac{1}{2}\begin{vmatrix}
+x_0&y_0&1\\
+x_1&y_1&1\\
+x_2&y_2&1
+\end{vmatrix}
+$$
+由假设可得：
+$$
+f_0(x,y)=\frac{\tau_0}{\tau},\quad f_1(x,y)=\frac{\tau_1}{\tau},\quad f_2(x,y)=\frac{\tau_2}{\tau}
+$$
+则$f_0(x,y),f_1(x,y),f_2(x,y)$是线性函数。所以它们是要找的函数。\\
+$\qquad$由于$f_0(x,y)$表示的是${(x,y)(x_1,y_1)(x_2,y_2)}$围成的三角形的面积比上${(x_0,y_0)(x_1,y_1)(x_2,y_2)}$围成的三角形面积。所以当$(x,y)$沿着与$\vec{(x_2-x_1,y_2-y_1)}$方向垂直并指向$(x_0,y_0)$的方向，即$(y_1-y_2,x_2-x_1)$方向时，$f_0(x,y)$的函数值增加最快，所以$f_0(x,y)$的梯度方向为$(y_1-y_2,x_2-x_1)$，单位方向为$\vec{n}=\frac{(y_1-y_2,x_2-x_1)}{\sqrt{(y_1-y_2)^2+(x_2-x_1)^2}}$\\
+$\qquad$由于$f_0(x,y)$是线性函数，所以梯度不变，假设由$(x_0,y_0)$到对边的垂线的垂足为$(x_3,y_3)$那么垂线长度就是三角形的高，设为$h$,$h=\frac{2\tau}{\sqrt{(y_1-y_2)^2+(x_2-x_1)^2}}$
+则$\nabla f_0(x,y)$的大小为$\frac{f_0(x_0,y_0)-f_0(x_3,y_3)}{h}=\frac{\sqrt{(y_1-y_2)^2+(x_2-x_1)^2}}{2\tau}$
+$$
+\nabla f_0(x,y)=\frac{(y_1-y_2,x_2-x_1)}{\sqrt{(y_1-y_2)^2+(x_2-x_1)^2}}\frac{\sqrt{(y_1-y_2)^2+(x_2-x_1)^2}}{2\tau}=\frac{(y_1-y_2,x_2-x_1)}{2\tau}
+$$
+同理：
+$$
+\nabla f_1(x,y)=\frac{(y_2-y_0,x_0-x_2)}{2\tau}
+$$
+$$
+\nabla f_2(x,y)=\frac{(y_0-y_1,x_1-x_0)}{2\tau}
+$$
+\section{三维情况}
+三维空间中，由四个不共面的点$(x_0,y_0,z_0)(x_1,y_1,z_1)(x_2,y_2,z_2)(x_3,y_3,z_3)$确定四个定义域在四个点围成的三棱柱内的线性函数$f_0(x,y,z),f_1(x,y,z),f_2(x,y,z),f_3(x,y,z)$满足：
+\begin{align}
+\begin{cases}
+f_i(x_i)=1&{}\\
+f_i(x_j)=0&i\ne j
+\end{cases}
+\qquad i=0,1,2,3
+\end{align}
+\subsection*{方法一：待定系数法}设：
+$$
+f_i(x,y,z)=a_ix+b_iy+c_iz+d_i\qquad i=0,1,2,3
+$$
+得到方程组：
+$$
+\begin{cases}
+a_0x_0+b_0y_0+c_0z_0+d_0=1\\
+a_0x_1+b_0y_1+c_0z_1+d_0=0\\
+a_0x_2+b_0y_2+c_0z_2+d_0=0\\
+a_0x_3+b_0y_3+c_0z_3+d_0=0
+\end{cases},\qquad
+\begin{cases}
+a_1x_0+b_1y_0+c_1z_0+d_1=0\\
+a_1x_1+b_1y_1+c_1z_1+d_1=1\\
+a_1x_2+b_1y_2+c_1z_2+d_1=0\\
+a_1x_3+b_1y_3+c_1z_3+d_1=0
+\end{cases}
+$$
+$$
+\begin{cases}
+a_2x_0+b_2y_0+c_2z_0+d_2=0\\
+a_2x_1+b_2y_1+c_2z_1+d_2=0\\
+a_2x_2+b_2y_2+c_2z_2+d_2=1\\
+a_2x_3+b_2y_3+c_2z_3+d_2=0
+\end{cases},\qquad
+\begin{cases}
+a_3x_0+b_3y_0+c_3z_0+d_3=0\\
+a_3x_1+b_3y_1+c_3z_1+d_3=0\\
+a_3x_2+b_3y_2+c_3z_2+d_3=0\\
+a_3x_3+b_3y_3+c_3z_3+d_3=1
+\end{cases}
+$$
+设$\lambda=\begin{vmatrix}
+             x_0&y_0&z_0&1\\
+             x_1&y_1&z_1&1\\
+             x_2&y_2&z_2&1\\
+             x_3&y_3&z_3&1
+\end{vmatrix}$,根据克拉默法则：
+$$
+a_0=\frac{\begin{vmatrix}
+            1&y_0&z_0&1\\
+            0&y_1&z_1&1\\
+            0&y_2&z_2&1\\
+            0&y_3&z_3&1
+          \end{vmatrix}}{\lambda},\quad
+b_0=\frac{\begin{vmatrix}
+            x_0&1&z_0&1\\
+            x_1&0&z_1&1\\
+            x_2&0&z_2&1\\
+            x_3&0&z_3&1
+          \end{vmatrix}}{\lambda},\quad
+c_0=\frac{\begin{vmatrix}
+            x_0&y_0&1&1\\
+            x_1&y_1&0&1\\
+            x_2&y_2&0&1\\
+            x_3&y_3&0&1
+          \end{vmatrix}}{\lambda},\quad
+d_0=\frac{\begin{vmatrix}
+            x_0&y_0&z_0&1\\
+            x_1&y_1&z_1&0\\
+            x_2&y_2&z_2&0\\
+            x_3&y_3&z_3&0
+          \end{vmatrix}}{\lambda}          
+$$
+$$
+a_1=\frac{\begin{vmatrix}
+            0&y_0&z_0&1\\
+            1&y_1&z_1&1\\
+            0&y_2&z_2&1\\
+            0&y_3&z_3&1
+          \end{vmatrix}}{\lambda},\quad
+b_1=\frac{\begin{vmatrix}
+            x_0&0&z_0&1\\
+            x_1&1&z_1&1\\
+            x_2&0&z_2&1\\
+            x_3&0&z_3&1
+          \end{vmatrix}}{\lambda},\quad
+c_1=\frac{\begin{vmatrix}
+            x_0&y_0&0&1\\
+            x_1&y_1&1&1\\
+            x_2&y_2&0&1\\
+            x_3&y_3&0&1
+          \end{vmatrix}}{\lambda},\quad
+d_1=\frac{\begin{vmatrix}
+            x_0&y_0&z_0&0\\
+            x_1&y_1&z_1&1\\
+            x_2&y_2&z_2&0\\
+            x_3&y_3&z_3&0
+          \end{vmatrix}}{\lambda}          
+$$
+$$
+a_2=\frac{\begin{vmatrix}
+            0&y_0&z_0&1\\
+            0&y_1&z_1&1\\
+            1&y_2&z_2&1\\
+            0&y_3&z_3&1
+          \end{vmatrix}}{\lambda},\quad
+b_2=\frac{\begin{vmatrix}
+            x_0&0&z_0&1\\
+            x_1&0&z_1&1\\
+            x_2&1&z_2&1\\
+            x_3&0&z_3&1
+          \end{vmatrix}}{\lambda},\quad
+c_2=\frac{\begin{vmatrix}
+            x_0&y_0&0&1\\
+            x_1&y_1&0&1\\
+            x_2&y_2&1&1\\
+            x_3&y_3&0&1
+          \end{vmatrix}}{\lambda},\quad
+d_2=\frac{\begin{vmatrix}
+            x_0&y_0&z_0&0\\
+            x_1&y_1&z_1&0\\
+            x_2&y_2&z_2&1\\
+            x_3&y_3&z_3&0
+          \end{vmatrix}}{\lambda}          
+$$
+$$
+a_3=\frac{\begin{vmatrix}
+            0&y_0&z_0&1\\
+            0&y_1&z_1&1\\
+            0&y_2&z_2&1\\
+            1&y_3&z_3&1
+          \end{vmatrix}}{\lambda},\quad
+b_3=\frac{\begin{vmatrix}
+            x_0&0&z_0&1\\
+            x_1&0&z_1&1\\
+            x_2&0&z_2&1\\
+            x_3&1&z_3&1
+          \end{vmatrix}}{\lambda},\quad
+c_3=\frac{\begin{vmatrix}
+            x_0&y_0&0&1\\
+            x_1&y_1&0&1\\
+            x_2&y_2&0&1\\
+            x_3&y_3&1&1
+          \end{vmatrix}}{\lambda},\quad
+d_3=\frac{\begin{vmatrix}
+            x_0&y_0&z_0&0\\
+            x_1&y_1&z_1&0\\
+            x_2&y_2&z_2&0\\
+            x_3&y_3&z_3&1
+          \end{vmatrix}}{\lambda}          
+$$
+这样就得到了四个基函数，且他们的梯度为：
+$$
+\nabla f_0(x,y)=(a_0,b_0,c_0),\nabla f_1(x,y)=(a_1,b_1,c_1),\nabla f_2(x,y)=(a_2,b_2,c_2),\nabla f_3(x,y)=(a_3,b_3,c_3)
+$$
+\subsection*{方法二：体积函数}
+若$(x_1-x_0,y_1-y_0,z_1-z_0),(x_2-x_0,y_2-y_0,z_2-z_0),(x_3-x_0,y_3-y_0,z_3-z_0)$是右手坐标系。\\
+\begin{itemize}
+\item 令$f_0(x,y,z)$表示 \{$(x,y,z),(x_1,y_1,z_1),(x_2,y_2,z_2),(x_3,y_3,z_3)$\}围成的三棱锥的体积比上\{$(x_0,y_0,z_0),(x_1,y_1,z_1),(x_2,y_2,z_2),(x_3,y_3,z_3)$\}围成的三棱锥的体积。\\
+\item $f_1(x,y,z)$表示\{$(x_0,y_0,z_0),(x,y,z),(x_2,y_2,z_2),(x_3,y_3,z_3)$\}围成的三棱锥的体积比上\{$(x_0,y_0,z_0),(x_1,y_1,z_1),(x_2,y_2,z_2),(x_3,y_3,z_3)$\}围成的三棱锥的体积。\\
+\item $f_2(x,y,z)$表示\{$(x_0,y_0,z_0),(x_1,y_1,z_1),(x,y,z),(x_3,y_3,z_3)$\}围成的三棱锥的体积比上\{$(x_0,y_0,z_0),(x_1,y_1,z_1),(x_2,y_2,z_2),(x_3,y_3,z_3)$\}围成的三棱锥的体积。\\
+\item $f_3(x,y,z)$表示\{$(x_0,y_0,z_0),(x_1,y_1,z_1),(x_2,y_2,z_2),(x,y,z)$\}围成的三棱锥的体积比上\{$(x_0,y_0,z_0),(x_1,y_1,z_1),(x_2,y_2,z_2),(x_3,y_3,z_3)$\}围成的三棱锥的体积。\\
+\end{itemize}
+
+这时，$f_0(x,y,z),f_1(x,y,z),f_2(x,y,z)$满足条件（3）。\\
+用$v$来表示总体积，$v_i$来表示$f_i(x,y)$对应的棱锥的体积，由三棱锥体积公式可得：
+$$
+v=\frac{1}{6}\begin{vmatrix}
+x_1&y_1&z_1&1\\
+x_2&y_2&z_2&1\\
+x_3&y_3&z_3&1\\
+x_0&y_0&z_0&1\\
+\end{vmatrix},\quad
+v_0=\frac{1}{6}\begin{vmatrix}
+x_1&y_1&z_1&1\\
+x_2&y_2&z_2&1\\
+x_3&y_3&z_3&1\\
+x&y&z&1\\
+\end{vmatrix},\quad
+v_1=\frac{1}{6}\begin{vmatrix}
+x&y&z&1\\
+x_2&y_2&z_2&1\\
+x_3&y_3&z_3&1\\
+x_0&y_0&z_0&1\\
+\end{vmatrix}
+$$
+$$
+v_2=\frac{1}{6}\begin{vmatrix}
+x_1&y_1&z_1&1\\
+x&y&z&1\\
+x_3&y_3&z_3&1\\
+x_0&y_0&z_0&1\\
+\end{vmatrix},\quad
+v_3=\frac{1}{6}\begin{vmatrix}
+x_1&y_1&z_1&1\\
+x_2&y_2&z_2&1\\
+x&y&z&1\\
+x_0&y_0&z_0&1\\
+\end{vmatrix}
+$$
+由假设可知：
+$$
+f_0(x,y,z)=\frac{v_0}{v},\quad f_1(x,y,z)=\frac{v_1}{v}
+$$
+$$
+f_2(x,y,z)=\frac{v_2}{v},\quad f_3(x,y,z)=\frac{v_3}{v}
+$$
+则$f_0(x,y,z),f_1(x,y,z),f_2(x,y,z),f_3(x,y,z)$是线性函数。所以它们是要找的函数。\\
+设$(x_0,y_0,z_0)$的对面为$s_0$,由于$f_0(x,y,z)$是以$s_0$为底，$(x_0,y_0,z_0)$为顶点的立体的体积。所以当$(x,y,z)$沿着与$s_0$垂直且指向$(x_0,y_0,z_0)$的方向时$f_0(x,y,z)$函数值增加最快,所以$f_0(x,y,z)$的梯度的方向是$(x_3-x_1,y_3-y_1,z_3-z_1)\times(x_2-x_1,y_2-y_1,z_2-z_1)$,设$(x_3-x_1,y_3-y_1,z_3-z_1),(x_2-x_1,y_2-y_1,z_2-z_1)$夹角为$\gamma$,则单位方向$\vec{n}$为
+$$
+\frac{(x_3-x_1,y_3-y_1,z_3-z_1)\times(x_2-x_1,y_2-y_1,z_2-z_1)}{|(x_3-x_1,y_3-y_1,z_3-z_1)||(x_2-x_1,y_2-y_1,z_2-z_1)|sin(\gamma)}
+$$
+由$(x_0,y_0,z_0)$到$s_0$做垂线，垂足为$(x_4,y_4,z_4)$，设垂线长度为$h$则
+$$
+h=\frac{6v}{S(s_0)}=\frac{6v}{|(x_3-x_1,y_3-y_1,z_3-z_1)||(x_2-x_1,y_2-y_1,z_2-z_1)|sin(\gamma)}
+$$
+由于线性函数的梯度处处相等，所以梯度的大小$$l=\frac{f_0(x_0,y_0,z_0)-f_0(x_4,y_4,z_4)}{h}=\frac{1}{h}$$
+所以$$
+\nabla f_0(x,y,z)=l*\vec{n}=\frac{(x_3-x_1,y_3-y_1,z_3-z_1)\times(x_2-x_1,y_2-y_1,z_2-z_1)}{6v}
+$$
+同理
+$$
+\nabla f_1(x,y,z)=\frac{(x_2-x_0,y_2-y_0,z_2-z_0)\times(x_3-x_0,y_3-y_0,z_3-z_0)}{6v}
+$$
+$$
+\nabla f_2(x,y,z)=\frac{(x_3-x_0,y_3-y_0,z_3-z_0)\times(x_1-x_0,y_1-y_0,z_1-z_0)}{6v}
+$$
+$$
+\nabla f_3(x,y,z)=\frac{(x_1-x_0,y_1-y_0,z_1-z_0)\times(x_2-x_0,y_2-y_0,z_2-z_0)}{6v}
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
