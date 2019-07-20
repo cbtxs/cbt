@@ -1,0 +1,104 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass[12pt,a4paper]{article}
+\input{en_preamble.tex}
+\input{xecjk_preamble.tex}
+
+\title{傅里叶变换}
+\author{作者}
+\date{\chntoday}
+\begin{document}
+\maketitle
+\newpage
+\section{公式}
+\begin{enumerate}[1.]
+\item 傅里叶级数：
+\begin{align*}
+f(x)&=\frac{a_0}{2}+\sum_{n=1}^{+\infty}{a_n\cos{\frac{n\pi}{T}x}+b_n\sin{\frac{n\pi}{T}x}},\\
+a_n&=\frac{1}{T}\int_{-T}^{T}{f(x)\cos{\frac{n\pi}{T}x}}\,dx,\\
+b_n&=\frac{1}{T}\int_{-T}^{T}{f(x)\sin{\frac{n\pi}{T}x}}\,dx\qquad n=1,\cdots,+\infty
+\end{align*}
+\item 傅里叶级复数形式：
+\begin{align*}
+f(x)&=\sum_{n=-\infty}^{+\infty}{c_n e^{\frac{n\pi}{T}x}},\\
+c_n&=\frac{1}{T}\int_{-T}^{T}{f(x)e^{-\frac{n\pi}{T}x}}\,dx\qquad n=-\infty,\cdots,0,\cdots,+\infty
+\end{align*}
+\item 傅里叶变换：
+$$
+\hat{f}(\omega)=\int_{-\infty}^{+\infty}{f(x)e^{-i\omega x}}\,dx
+$$
+\item 傅里叶逆变换：
+$$
+f(x)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}{\hat{f}(x)e^{i\omega x}}\,d\omega
+$$
+\item 离散傅里叶变换：
+$\boldsymbol{a}=(a_0,a_1,\cdots,a_{N-1})$的离散傅里变换为$\boldsymbol{c}=(c_0,c_1,\cdots,c_{N-1})$
+$$
+c_k=\sum_{j=0}^{N-1}{a_j e^{-jk\frac{2\pi i}{N}}}
+$$
+\end{enumerate}
+\section{公式原理及推导}
+定义$L^2[-T,T]$空间上的内积为：
+$$
+<f,g>=\int_{-T}^{T}f*g\,dx
+$$
+$\left\{\frac{1}{2},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots}$是$L^2[-T,T]$空间上的一组基，设$f,g\in\left\{\frac{1}{2},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots},f\neq g$则：
+\begin{align*}
+<f,g>=\int_{-T}^{T}f*g\,dx=0\\
+<f,f>=\int_{-T}^{T}f^2\,dx=T
+\end{align*}
+所以$\left\{\frac{1}{2},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots}$是$L^2[-T,T]$是$L^2[-T,T]$空间上的一组正交基，所以：
+\begin{align*}
+<f(x),\frac{1}{2}>&=\int_{-T}^{T}{\frac{1}{2}*f}\,dx\\
+<f(x),\cos{\frac{n\pi}{T}x}>&=\int_{-T}^{T}{f*\cos{\frac{n\pi}{T}x}}\,dx\\
+<f(x),\sin{\frac{n\pi}{T}x}>&=\int_{-T}^{T}{f*\sin{\frac{n\pi}{T}x}}\,dx
+\end{align*}
+所以：
+$$
+f(x)=\int_{-T}^{T}{\frac{1}{2}*f}\,dx+\sum_{n=1}^{+\infty}{\int_{-T}^{T}{f*\cos{\frac{n\pi}{T}x}}\,dx*\cos{\frac{n\pi}{T}x}+\int_{-T}^{T}{f*\sin{\frac{n\pi}{T}x}}\,dx*\sin{\frac{n\pi}{T}x}}
+$$
+就得到了傅里叶级数。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\cite{tam19912d}
+\bibliography{ref}
+\end{document}
