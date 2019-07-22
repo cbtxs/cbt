@@ -4,7 +4,7 @@
 \input{xecjk_preamble.tex}
 
 \title{傅里叶变换}
-\author{作者}
+\author{}
 \date{\chntoday}
 \begin{document}
 \maketitle
@@ -13,7 +13,7 @@
 \begin{enumerate}[1.]
 \item 傅里叶级数：
 \begin{align*}
-f(x)&=\frac{a_0}{2}+\sum_{n=1}^{+\infty}{a_n\cos{\frac{n\pi}{T}x}+b_n\sin{\frac{n\pi}{T}x}},\\
+f(x)&=\frac{a_0}{2}+\sum_{n=1}^{+\infty}\left\{{a_n\cos{\frac{n\pi}{T}x}+b_n\sin{\frac{n\pi}{T}x}}\right\},\\
 a_n&=\frac{1}{T}\int_{-T}^{T}{f(x)\cos{\frac{n\pi}{T}x}}\,dx,\\
 b_n&=\frac{1}{T}\int_{-T}^{T}{f(x)\sin{\frac{n\pi}{T}x}}\,dx\qquad n=1,\cdots,+\infty
 \end{align*}
@@ -41,23 +41,23 @@ $$
 $$
 <f,g>=\int_{-T}^{T}f*g\,dx
 $$
-$\left\{\frac{1}{2},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots}$是$L^2[-T,T]$空间上的一组基，设$f,g\in\left\{\frac{1}{2},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots},f\neq g$则：
+$\left\{\frac{1}{\sqrt{2}},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots}$是$L^2[-T,T]$空间上的一组基，设$f,g\in\left\{\frac{1}{\sqrt{2}},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots},$\\
+$f\neq g$则：
 \begin{align*}
 <f,g>=\int_{-T}^{T}f*g\,dx=0\\
 <f,f>=\int_{-T}^{T}f^2\,dx=T
 \end{align*}
-所以$\left\{\frac{1}{2},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots}$是$L^2[-T,T]$是$L^2[-T,T]$空间上的一组正交基，所以：
+所以$\left\{\frac{1}{\sqrt{2}},\cos{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}\right\}_{n=1,2,\cdots}$是$L^2[-T,T]$是$L^2[-T,T]$空间上的一组正交基，所以：
 \begin{align*}
-<f(x),\frac{1}{2}>&=\int_{-T}^{T}{\frac{1}{2}*f}\,dx\\
-<f(x),\cos{\frac{n\pi}{T}x}>&=\int_{-T}^{T}{f*\cos{\frac{n\pi}{T}x}}\,dx\\
-<f(x),\sin{\frac{n\pi}{T}x}>&=\int_{-T}^{T}{f*\sin{\frac{n\pi}{T}x}}\,dx
+\frac{<f(x),\frac{1}{\sqrt{2}}>}{<\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}>}&=\frac{1}{T} \int_{-T}^{T}\frac{1}{\sqrt{2}}*f\,dx \\
+\frac{<f(x),\cos{\frac{n\pi}{T}x}>}{<\cos{\frac{n\pi}{T}x},\cos{\frac{n\pi}{T}x}>}&=\frac{1}{T}\int_{-T}^{T}{f*\cos{\frac{n\pi}{T}x}}\,dx\\
+\frac{<f(x),\sin{\frac{n\pi}{T}x}>}{<\sin{\frac{n\pi}{T}x},\sin{\frac{n\pi}{T}x}>}&=\frac{1}{T}\int_{-T}^{T}{f*\sin{\frac{n\pi}{T}x}}\,dx
 \end{align*}
 所以：
 $$
-f(x)=\int_{-T}^{T}{\frac{1}{2}*f}\,dx+\sum_{n=1}^{+\infty}{\int_{-T}^{T}{f*\cos{\frac{n\pi}{T}x}}\,dx*\cos{\frac{n\pi}{T}x}+\int_{-T}^{T}{f*\sin{\frac{n\pi}{T}x}}\,dx*\sin{\frac{n\pi}{T}x}}
+f(x)=\frac{1}{2T}\int_{-T}^{T}{f(x)}\,dx+\frac{1}{T}\sum_{n=1}^{+\infty}\left\{{\int_{-T}^{T}{f(x)*\cos{\frac{n\pi}{T}x}}\,dx*\cos{\frac{n\pi}{T}x}+\int_{-T}^{T}{f(x)*\sin{\frac{n\pi}{T}x}}\,dx*\sin{\frac{n\pi}{T}x}}\right\}
 $$
 就得到了傅里叶级数。
-
 
 
 
