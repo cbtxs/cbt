@@ -1,0 +1,11 @@
+cholesky.py用于解决正定矩阵线性方程组
+eular.py用于求微分方程数值解dy/dx=f(x,y)
+gauss.py用于解决矩阵顺序主子式不为0的矩阵的线性方程组
+gecpgauss.py是选主元，而且把A和b放一起，一起进行行变换的方法求线性方程组
+gecplu.py是选主元lu分解的方法求线性方程组
+hermite.py是分段hermite三次差值
+lagrange.py是lagrange插值多项式
+Newton.py是牛顿插值多项式
+zhongxin2.py是用重心坐标函数的方法对二维数据线性插值
+分段线性插值.py是分段线性插值
+catch.py是计算弱对角占优三角矩阵的线性方程组

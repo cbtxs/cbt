@@ -36,5 +36,5 @@ y1=NT(x1)
 y2=RUNGR(x1)
 plt.plot(x1, y1)
 plt.plot(x1, y2,'r')
-plt.plot(x1,y2-y1)
+
 plt.show()
