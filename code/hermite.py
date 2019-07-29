@@ -1,3 +1,10 @@
+"""               
+分段三次hermite插值                               
+                               
+Author: 陈春雨                 
+Date: 2019-7-22              
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 

@@ -1,3 +1,12 @@
+"""               
+选主元lu分解                               
+                               
+Author: 陈春雨                 
+Date: 2019-7-27                
+
+""" 
+
+
 import numpy as np
 import copy
 

@@ -1,3 +1,15 @@
+"""
+
+
+‘追赶法’求三角线性矩阵方程组解   
+                               
+
+
+Author: 陈春雨
+Date: 2019-7-27                
+"""
+
+
 import numpy as np
 
 def sdjlu(x):

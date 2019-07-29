@@ -1,3 +1,9 @@
+"""               
+Lagrange插值                               
+                               
+Author: 陈春雨                 
+Date: 2019-5-5                
+""" 
 import matplotlib.pyplot as plt
 import numpy as np
 n=10

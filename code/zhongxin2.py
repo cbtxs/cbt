@@ -1,3 +1,14 @@
+"""            
+二元函数分片线性插值(用面积坐标函数的方法计算分片线性插值函数的基函数)
+                    
+
+
+Author: 陈春雨                 
+Date: 2019-7-14                
+""" 
+
+
+
 import numpy as np
 N=20
 xdate=np.linspace(3,4,N+1)

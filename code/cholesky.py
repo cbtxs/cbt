@@ -1,5 +1,19 @@
+"""               
+                            
+正定矩阵方程组求解
+
+                               
+Author: 陈春雨                 
+Date: 2019-7-26                
+""" 
+
+
+
+
+
 import numpy as np
 
+#cholesky LU分解
 def choleskyf(x):
     x=x.astype(float)
     (n,n)=x.shape
@@ -13,6 +27,8 @@ def choleskyf(x):
                 x[i,j]=x[i,j]-lf[i,k]*lf[j,k]
             lf[j,i]=x[i,j]/lf[i,i]
     return lf
+
+#计算三角矩阵
 def cholesky(A,b):        #要求b为一位数组np.array([])型的
     l=choleskyf(A)
     u=np.transpose(l)

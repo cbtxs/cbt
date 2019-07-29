@@ -1,3 +1,13 @@
+"""               
+分段线性插值 
+                               
+                               
+Author: 陈春雨                 
+Date: 2019-5-8                
+""" 
+
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 #import copy

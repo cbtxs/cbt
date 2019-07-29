@@ -1,3 +1,11 @@
+"""               
+选主元高斯消去法（A,b）放一起进行行变换                               
+                               
+Author: 陈春雨                 
+Date: 2019-7-27                
+""" 
+
+
 import numpy as np
 import copy
 

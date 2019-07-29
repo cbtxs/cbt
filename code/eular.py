@@ -1,5 +1,17 @@
+"""               
+eular法求解常微分方程数值解   
+                               
+                               
+Author: 陈春雨                 
+Date: 2019-7-10    
+"""
+
+
+
+
 import numpy as np
 import matplotlib.pyplot as plt
+
 a=0           # 区间（a,b）
 b=1
 c=1           # 初值解y(a)=c

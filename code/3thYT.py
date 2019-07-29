@@ -1,3 +1,15 @@
+"""
+对runge函数三次样条插值
+
+
+Author: 陈春雨
+Date: 2019-7-27
+"""
+
+
+
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 
