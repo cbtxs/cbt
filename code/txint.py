@@ -12,8 +12,8 @@ def zd(h):
     (n,)=x.shape
     y=0
     for i in range(n-1):
-        y=y+ff((x[i]+x[i+1])/2)
-    y*=h
+        y+=ff(x[i])+ff(x[i+1])
+    y*=h/2
     return y
 h=0.4
 l1,l2=0,1
@@ -21,7 +21,4 @@ while abs(l1-l2)/3>error:
     l1=zd(h)
     l2=zd(h/2)
     h=h/2
-    print('***')
-    print(l1-l2)
-    print('***')
 print('积分值=%f,步长=%f'%(l2,h))
