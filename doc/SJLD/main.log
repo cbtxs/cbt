@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.7.1)  30 JUL 2019 22:16
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.8.22)  22 AUG 2019 14:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2027,11 +2027,15 @@ LaTeX Info: Redefining \nameref on input line 9.
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
- ABD: EveryShipout initializing macros
+ABD: EveryShipout initializing macros
 \c@lstlisting=\count365
 .................................................
 . fontspec info: "setup-math"
@@ -2110,5 +2114,4 @@ File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 
 ! LaTeX Error: Environment python undefined.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate 
+See the LaTeX manual or LaTe
