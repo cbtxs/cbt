@@ -1,0 +1,97 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass[12pt,a4paper]{article}
+\input{en_preamble.tex}
+\input{xecjk_preamble.tex}
+
+\title{不规则图形到规则图形的映射}
+\author{陈春雨}
+\date{\chntoday}
+\begin{document}
+\maketitle
+\newpage
+\section{二维图形的映射}
+\subsection{ 任意三角形到直角三角形的映射}
+假设一个三角形的三个顶点是$P_1,P_2,P_3,$其中$P_i=(x_i,y_i)$，将其映射为顶点为$(0,0),(0,1),(1,0)$
+的直角三角形。
+
+对于任意$P=(x,y)\in $三角形，$P-P_1$可以被$P_2-P_1,P_3-P_1$线性表出，设
+$$
+P-P_1=a(P_2-P_1)+b(P_3-P_1)
+$$
+可以做线性映射$f$:
+$$
+(x,y)\to (a,b)
+$$
+
+$\forall$三角形中的$ (x,y)$,连接$P_1,P$并延长交$P_2,P_3$于$P^{'}=(x^{'},y^{'})$则
+$$
+a(x^{'},y^{'})\ge a(x,y) \ge 0,b(x^{'},y^{'})\ge b(x,y) \ge 0
+$$,
+设$P_2P^{'}$的长度是$P_2P_3$的$k$倍，则$a(x^{'},y^{'})=k,b(x^{'},y^{'})=1-k$所以$a(x,y)+b(x,y)\le 1$所以$f$把三角形映射道直角三角形内部，而对于任意$(a,b)$属于直角三角形，可以找到$(x,y)=a(P_2-P_1)+b(P_3-P_1)$属于三角形，所以$f$是满射，由线性表出的唯一性可知$f$是一个单射，所以$f$是一一映射
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{./figures/Figure_1.png}
+\end{figure}
+$\nabla f(x)$
+$$\nabla f(x)$$
+\begin{equation}
+    \int_0^1f(x)\mathrm{d}x
+\end{equation}
+
+\begin{equation*}
+\begin{aligned}
+f(x)&=x^2+y^2\\
+&=s^2+w^2
+\end{aligned}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\cite{tam19912d}
+\bibliography{ref}
+\end{document}
