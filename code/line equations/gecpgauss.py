@@ -1,9 +1,9 @@
-"""               
-选主元高斯消去法（A,b）放一起进行行变换                               
-                               
-Author: 陈春雨                 
-Date: 2019-7-27                
-""" 
+"""
+选主元高斯消去法（A,b）放一起进行行变换
+
+Author: 陈春雨
+Date: 2019-7-27
+"""
 
 
 import numpy as np
@@ -46,3 +46,19 @@ bb=np.sum(aa,axis=1)
 bb=np.array([bb])
 print(gecpgauss(aa,bb))
 
+
+
+def inv(a):
+    a=a.astype(float)
+    (n,n)=a.shape
+    print(n)
+    b=np.identity(n)
+    aa=copy.deepcopy(a)
+    for i in range(n):
+        cc=np.array([b[:,i]])
+        aa[:,i]=gecpgauss(a,cc)
+    return aa
+aaa=np.array([[1,8,-1],[0,3,0],[0,4,1]])
+aaaa=inv(aaa)
+bbb=np.array([[1,0,2],[0,2,0],[0,4,-1]])
+print(np.matmul(aaa,np.matmul(bbb,aaaa)))
