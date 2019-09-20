@@ -3,6 +3,7 @@
 \input{en_preamble.tex}
 \input{xecjk_preamble.tex}
 
+
 \title{不规则图形到规则图形的映射}
 \author{陈春雨}
 \date{\chntoday}
@@ -11,10 +12,9 @@
 \newpage
 \section{二维图形的映射}
 \subsection{ 任意三角形到直角三角形的映射}
-假设一个三角形的三个顶点是$P_1,P_2,P_3,$其中$P_i=(x_i,y_i)$，将其映射为顶点为$(0,0),(0,1),(1,0)$
-的直角三角形。
+假设一个三角形$A$的三个顶点是$P_1,P_2,P_3,$其中$P_i=(x_i,y_i)$，将其映射为顶点为$(0,0),(0,1),(1,0)$的直角三角形$B$。
 
-对于任意$P=(x,y)\in $三角形，$P-P_1$可以被$P_2-P_1,P_3-P_1$线性表出，设
+对于任意$P=(x,y)\in A$，$P-P_1$可以被$P_2-P_1,.P_3-P_1$线性表出，设
 $$
 P-P_1=a(P_2-P_1)+b(P_3-P_1)
 $$
@@ -22,30 +22,199 @@ $$
 $$
 (x,y)\to (a,b)
 $$
-
-$\forall$三角形中的$ (x,y)$,连接$P_1,P$并延长交$P_2,P_3$于$P^{'}=(x^{'},y^{'})$则
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.15]{./figures/Figure_1.jpg}
+\end{figure}
+任取$ P=(x,y)\in A$,连接$P_1,P$并延长交$P_2P_3$于$P^{'}=(x^{'},y^{'})$则
 $$
-a(x^{'},y^{'})\ge a(x,y) \ge 0,b(x^{'},y^{'})\ge b(x,y) \ge 0
-$$,
-设$P_2P^{'}$的长度是$P_2P_3$的$k$倍，则$a(x^{'},y^{'})=k,b(x^{'},y^{'})=1-k$所以$a(x,y)+b(x,y)\le 1$所以$f$把三角形映射道直角三角形内部，而对于任意$(a,b)$属于直角三角形，可以找到$(x,y)=a(P_2-P_1)+b(P_3-P_1)$属于三角形，所以$f$是满射，由线性表出的唯一性可知$f$是一个单射，所以$f$是一一映射
+a(x^{'},y^{'})\ge a(x,y) \ge 0,\quad b(x^{'},y^{'})\ge b(x,y) \ge 0
+$$
+设$P^{'}P_3$的长度是$P_2P_3$的$k$倍，则
+\begin{align*}
+P^{'}-P_1&=P_2-P_1+k(P_3-P_2)\\
+&=k(P_3-P_1)+(1-k)(P_2-P_1)
+\end{align*}
+所以
+$$a(x^{'},y^{'})=1-k,\quad b(x^{'},y^{'})=k$$
+所以$$a(x,y)+b(x,y)\le 1$$
+因此$f$把$A$映射到了$B$，而对于任意$(a,b)$属于$B$，可以找到$(x,y)=a(P_2-P_1)+b(P_3-P_1)$属于$A$，所以$f$是满射，由线性表出的唯一性可知$f$是一个单射，所以$f$是$A$到$B$的一一映射。
 
+由$P-P_1=a(P_2-P_1)+b(P_3-P_1)$可得：
+$$
+\begin{cases}
+x-x_1=a(x_2-x_1)+b(x_3-x_1)\\
+y-y_1=a(y_2-P_1)+b(y_3-y_1)
+\end{cases}
+$$
+显然，$f$是一个线性映射，解线性方程组即可得到$(a,b)$.
+
+\subsection{ 任意四边形到正方形的映射}
+假设一个四边形$A$的四个顶点是$P_1,P_2,P_3,P_4$其中$P_i=(x_i,y_i)$，将其映射为顶点为$Q_1=(0,0),Q_2=(0,1),Q_3=(1,0),Q_4=(1,1)$的正方形$B$。
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.15]{./figures/Figure_2.jpg}
+\end{figure}
+若使用1.1中的线性映射，将$P_1,P_2,P_3$映射为$Q_1,Q_2,Q_3$，则$P_4$不一定映射到$Q_4$,(事实上，只有$A$是平行四边形的时候才会使$P_4$映射到$Q_4$)，所以要使用新的映射。
+
+我们发现任取正方形中一点$Q=(\lambda,k)$,经过$Q$做$y$轴平行线，分别交上下边于$Q^{'},Q^{''}$
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.12]{./figures/Figure_3.jpg}
+\end{figure}
+则
+
+$$
+\frac{l(Q^{'}-Q_3)}{l(Q_4-Q_3)} =\frac{l(Q^{''}-Q_1)}{l(Q_2-Q_1)}=\lambda,\quad \frac{l(Q-Q^{''})}{l(Q^{'}-Q^{''})}=k  
+$$
+
+这样就定义了$Q$的坐标，那么同样的方法在一般四边形中是否适用呢？
+\begin{definition}
+$l(\alpha)=\alpha$的长度
+\end{definition}
+
+\begin{definition}
+假设一个四边形$A$的四个顶点是$P_1,P_2,P_3,P_4$，$P^{'},P^{''}$分别在$P_1P_2,P_3P_4$上，且
+$$
+\frac{l(P^{'}-P_3)}{l(P_4-P_3)} =\frac{l(P^{''}-P_1)}{l(P_2-P_1)}=\lambda
+$$
+则称$P^{'}P^{''}$为等比线,$\lambda$为等比线的比
+\end{definition}
+
+\begin{theorem}
+对于任意四边形中的任意一点，都有唯一一条等比线经过它。
+\end{theorem}
+
+
+证明：
+
+存在性：假设一个四边形$A$的四个顶点是$P_1,P_2,P_3,P_4$,将$P_1P_2,P_3P_4$向两边无线延长，任取四边形内部一点$P$，作经过$P$的直线，分别交$P_1P_2,P_3P_4$与$P^{'},P^{''}$,作关于直线斜率$k$的函数$g$:
+$$
+g(k)=\frac{l(P^{'}-P_3)}{l(P_4-P_3)} -\frac{l(P^{''}-P_1)}{l(P_2-P_1)}
+$$
+则$g(k)$是一个连续函数，设$P^{''}=P_1$时，直线斜率为$k_1$,$P^{''}=P_2$时，直线斜率为$k_2$,
+则
+$$
+g(k_1)>0,\quad g(k_2)<0
+$$
+所以存在一个$k$使得$g(k)=0$，即存在一条过$P$的直线满足
+$$
+\frac{l(P^{'}-P_3)}{l(P_4-P_3)} =\frac{l(P^{''}-P_1)}{l(P_2-P_1)}
+$$所以这是一条等比线。
+
+唯一性：若存在两条等比线$Q^{'}Q^{''}$, $P^{'}P^{''}$过$P$，假设$Q^{'}$在$P^{'}$左边，则$Q^{''}$在$P^{''}$右边，那么两条线至少有一条不是等比线，所以每个点只有一条等比线经过。证毕||
+
+由定理1.1可知，四边形内任意一个点$P=(x,y)$有唯一一条等比线$P^{'}P^{''}$经过，设这个等比线的比为$\lambda$,
+$$
+\frac{l(P-P^{''})}{l(P^{'}-P^{''})}=k
+$$
+作映射$f$:
+$$
+(x,y)\to (\lambda,k)
+$$
+由于$0\le \lambda,k \le 1$,所以$f$把四边形映射到了正方形内.
+
+任取$0\le \lambda,k \le 1$，都存在四边形上比为$\lambda$的等比线$P^{'}P^{''}$，在这条线上定存在一点$P$，满足
+$$
+\frac{l(P-P^{''})}{l(P^{'}-P^{''})}=k
+$$
+根据$f$的定义可知：
+$$
+f(P)=(\lambda,k)
+$$
+所以$f$是一个满射，由于等比线的唯一性可知$f$是一个单射，所以$f$是$A$到$B$的一一映射。
+
+用待定系数法，假设$P=(x,y)$：
+$$
+f(P)=(\lambda,k)
+$$
+则：
+\begin{align*}
+P-P_1&=P-P^{''}+P^{''}-P_1\\
+&=k(P^{'}-P{''})+\lambda(P_2-P_1)\\
+&=k(P^{'}-P_3)+k(P_3-P_1)+k(P_1-P^{''})+\lambda(P_2-P_1)\\
+&=\lambda k(P_4-P_3)+k(P_3-P_1)+\lambda(1-k)(P_2+P_1)
+\end{align*}
+所以得到方程组：
+$$
+\begin{cases}
+x-x_1&=\lambda k(x_4-x_3)+k(x_3-x_1)+\lambda(1-k)(x_2+x_1)\\
+y-y_1&=\lambda k(y_4-y_3)+k(y_3-y_1)+\lambda(1-k)(y_2+y_1)
+\end{cases}
+$$
+由于$f$是一一映射，所以对于任意$(x,y)$,都有解。解方程组即可得到$(\lambda,k)$
+\section{ 三维}
+\subsection{ 任意三棱柱到直角三棱柱的映射}
+假设一个三棱柱的六个顶点为：$P_1,P_2,P_3,P_4,P_5,P_6$，其中$P_i=(x_i,y_i,z_i)$将其映射为顶点为将其映射为顶点为$Q_1=(0,0，0),Q_2=(0,1,0),Q_3=(1,0,0),Q_4=(0,0,1),Q_5=(0,1,1),Q_6=(1,0,1)$的直角三棱柱。
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{./figures/Figure_1.png}
+\includegraphics[scale=0.15]{./figures/Figure_4.jpg}
 \end{figure}
-$\nabla f(x)$
-$$\nabla f(x)$$
-\begin{equation}
-    \int_0^1f(x)\mathrm{d}x
-\end{equation}
 
-\begin{equation*}
-\begin{aligned}
-f(x)&=x^2+y^2\\
-&=s^2+w^2
-\end{aligned}
-\end{equation*}
+\begin{definition}
+假设一个三棱柱的六个顶点为：$P_1,P_2,P_3,P_4,P_5,P_6$，在三条棱上分别取三个点$P^{'},P^{''},P^{''}$，若：
+$$
+\frac{l(P^{'}-P_4)}{l(P_1-P_4)} =\frac{l(P^{''}-P_5)}{l(P_2-P_5)} =\frac{l(P^{'''}-P_6)}{l(P_4-P_6)} =b
+$$
+则称$P^{'},P^{''},P^{''}$组成的三角形为三棱柱的等比面，$b$成为等比面的比。\\
+\end{definition}
+\begin{theorem}
+对任意三棱柱，取内部任意一点，都有唯一一个等比面经过。
+\end{theorem}
+证明：存在性：假设一个三棱柱的六个顶点为：$P_1,P_2,P_3,P_4,P_5,P_6$，取内部一点$P=(x,y,z)$，在$P_3P_6,P_2P_5$上分别取两个点$P^{''},P^{''}$，令：
+$$
+\frac{l(P^{''}-P_5)}{l(P_2-P_5)} =\frac{l(P^{'''}-P_6)}{l(P_4-P_6)}
+$$
+$P,P^{''},P^{'''}$组成一个平面，交$P_1P_4$于$P^{'}$	，设：
+$$
+g=\frac{l(P^{'}-P_4)}{l(P_1-P_4)} -\frac{l(P^{''}-P_5)}{l(P_2-P_5)}
+$$
+则$g$与平面$P^{'},P^{''},P^{''}$与三个坐标轴夹角角度$\theta_1,\theta_2,\theta_3$有关，显然他是连续的，设$P^{''}=P_5$时，夹角为$t_{11},t_{21},t_{31}$,$P^{''}=P_2$时，夹角为$t_{12},t_{22},t_{32}$，则：
+$$
+g(t_{11},t_{21},t_{31})\le 0,g(t_{12},t_{22},t_{32})\ge 0
+$$
+所以存在$\theta_1,\theta_2,\theta_3$，使：
+$$
+g(\theta_1,\theta_2,\theta_3)=0
+$$
+即存在$P^{'}$,使：
+$$
+\frac{l(P^{'}-P_4)}{l(P_1-P_4)} =\frac{l(P^{''}-P_5)}{l(P_2-P_5)} =\frac{l(P^{'''}-P_6)}{l(P_4-P_6)}
+$$
+即$P^{'},P^{''},P^{'''}$是一个等比面。
+
+唯一性，与定理1.1类似。||
+
+由定理2.1可知，对于三棱柱内任意一点$P$，在三条棱上有三个点$P^{'},P^{''},P^{''}$使$P$在三个点组成的三角形内。且
+$$
+\frac{l(P^{'}-P_4)}{l(P_1-P_4)} =\frac{l(P^{''}-P_5)}{l(P_2-P_5)} =\frac{l(P^{'''}-P_6)}{l(P_4-P_6)}=b
+$$
+所以存在$\lambda,k$使$P=\lambda P_{'}+k P_{''}+(1-\lambda-k)P_{'''}$,$0\le b \le 1,0\le \lambda+k\le 1$
+作映射$f$:
+$$
+(x,y,z)\to (\lambda,k,b)
+$$
+则$f$把三棱柱映射为直角三棱柱，$\forall (\lambda,k,b)$属于直角三棱柱，原三棱柱存在比为$b$的等比面$P^{'},P^{''},P^{''}$，令$P=\lambda P_{'}+k P_{''}+(1-\lambda-k)P_{'''}$,则由$f$的定义可知：
+$$
+f(P)=(\lambda,k,b)
+$$
+所以$f$是一个满射，由定理2.1可知，$f$是一个单射，所以$f$是一个一一映射。
+
+综上，若$f(P)=(\lambda,k,b)$,可以得到如下关系：
+\begin{align*}
+P&=\lambda P^{'}+k P^{''}+(1-\lambda+k)P^{''}\\
+&=\lambda (b P_4+(1-b)P_1)+k(b P_5+(1-b)P_2)(1-\lambda+k)(b P_6+(1-b)P_3)
+\end{align*}
+得到方程组：
+$$
+\begin{cases}
+x=\lambda (b x_4+(1-b)x_1)+k(b x_5+(1-b)x_2)(1-\lambda+k)(b x_6+(1-b)x_3)\\
+y=\lambda (b y_4+(1-b)y_1)+k(b y_5+(1-b)y_2)(1-\lambda+k)(b y_6+(1-b)y_3)\\
+z=\lambda (b z_4+(1-b)z_1)+k(b z_5+(1-b)z_2)(1-\lambda+k)(b z_6+(1-b)z_3)\\
+\end{cases}
+$$
+由定理2.1可以方程组必有解，求解方程组即可得到$(\lambda,k,b)$。
 
 
 
@@ -80,18 +249,4 @@ f(x)&=x^2+y^2\\
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-\cite{tam19912d}
-\bibliography{ref}
 \end{document}

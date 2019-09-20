@@ -6,7 +6,7 @@ import numpy as np
 import copy
 import scipy.linalg
 def f(x,y):
-    z=-np.cos(3*x)*np.sin(np.pi*y)
+    z=np.cos(3*x)*np.sin(np.pi*y)
     return z
 #真解
 def zj(x,y):
@@ -59,7 +59,10 @@ def yyy(n):
     error=np.linalg.norm(x-kkk,ord=2)
     lk=np.matmul(u,x)-b
     b=b.reshape(n-1,n-1)
-    return u,x/kkk
+    x=x.reshape(n-1,n-1)
+    x=x.T
+    kkk=kkk.reshape(n-1,n-1)
+    return u,kkk[0,:]
 l,m=yyy(4)
 print(l)
 er=np.zeros([50])
