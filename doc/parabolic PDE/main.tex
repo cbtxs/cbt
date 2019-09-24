@@ -1,0 +1,99 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass[12pt,a4paper]{article}
+\input{en_preamble.tex}
+\input{xecjk_preamble.tex}
+
+\title{ 抛物型偏微分方程}
+\author{ 陈春雨}
+\date{\chntoday}
+\begin{document}
+\maketitle
+\newpage
+\section{问题}
+
+\begin{align*}
+\frac{\partial u}{\partial t} &=\frac{1}{4}(u_{xx}+u_{yy}),\quad (x,y)\in (0,1)\times (0,1),t>0 \\
+u(0,y,t) &=u(1,y,t)=0,\quad 0<y<1,t>0,\\
+u(x,0,t) &=u(x,1,t)=0,\quad 0<y<1,t>0,\\
+u(x,y,0) &=\sin\pi x\cos \pi y
+\end{align*}
+\subsection{ 离散}
+先对$x,y,t$的范围按照题目要求离散得到
+$$
+\{x_0,x_1,...x_n\}
+\{y_0,y_1,...y_m\}
+\{t_0,t_1,...t_s\}
+$$
+然后对微分方程离散
+$$
+\frac{u_{i,j}^{n+1}-u_{i,j}^{n}}{\tau}=\frac{u_{i+1,j}^{n}+u_{i-1,j}^{n}+u_{i,j+1}^{n}+u_{i,j-1}^{n}-4u_{i,j}^{n}}{4h^2}
+$$
+可以得到
+$$
+
+$$
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{./figures/Figure_1.png}
+\end{figure}
+$\nabla f(x)$
+$$\nabla f(x)$$
+\begin{equation}
+    \int_0^1f(x)\mathrm{d}x
+\end{equation}
+
+\begin{equation*}
+\begin{aligned}
+f(x)&=x^2+y^2\\
+&=s^2+w^2
+\end{aligned}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\cite{tam19912d}
+\bibliography{ref}
+\end{document}

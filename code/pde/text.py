@@ -66,21 +66,96 @@ while abs(s1-s2)/15>error1:
         y[2*i-1]=fy(x[2*i-1])
     h2=(b-a)/(num1/2)
     s2=simposn(y,h2)
-print(s2*2)#积分数值解
 end=time.time()
-print(end-star)
 
-def re(x):
-    y=(np.cos(x)**3-1)/(-3*np.sin(x)**2)
-    return y
-x11=np.linspace(a,b,101)
-y11=np.array([])
-y12=np.array([])
-for i in range(101):
-    y11=np.append(y11,re(x11[i]))
-    y12=np.append(y12,fy(x11[i]))
-print(y11)
-plt.plot(x11,y11-y12,'r')
-plt.plot(x11,y11,'g')
-plt.plot(x11,y12,'b')
-plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import numpy as np
+
+def jz(n,m,a,b,c):#n是行数，m是列数，a,b,c是矩阵参数
+    nn=m*n
+    u=np.zeros([nn,nn])
+    for i in range(nn):
+        if (i+1)%n>=2 or (i+1)%n==0:
+            u[i,i-1]=c
+        if (i+1)%n+1<=n and (i+1)%n!=0:
+            u[i,i+1]=c
+        if i-n>=0:
+            u[i,i-n]=b
+        if i+n<=nn-1:
+            u[i,i+n]=b
+        u[i,i]=a
+    return u
+def g(x,y,t):
+    z=np.sin(np.pi*x)*np.cos(np.pi*y)*np.exp(-np.pi**2*t/8)
+    return z
+def f(x,y):
+    z=np.sin(np.pi*x)*np.cos(np.pi*y)
+    return z
+h0,h1,h2=0.01,0.05,0.05
+a,b=0,1
+c,d=0,1
+e=0
+xdate=np.arange(a,b+h1,h1)
+ydate=np.arange(c,d+h2,h2)
+(n,)=xdate.shape
+(m,)=ydate.shape
+u_0yt=np.zeros([m])
+u_1yt=np.zeros([m])
+u_x0t=np.zeros([n])
+u_x1t=np.zeros([n])
+l=(m-2)*(n-2)
+A=jz(m-2,n-2,-4,1,1)
+for i in range(l):
+    if (i+1)%(m-2)<=1:
+        A[i,i]+=1
+x_0,y_0=np.meshgrid(xdate[1:-1],ydate[1:-1])
+def js(t0):
+    t=np.arange(e,t0+h0,h0)
+    u=f(x_0,y_0)
+    u=u.T
+    u=u.flatten()
+    A1=(h0/(4*(h1**2)))*A+np.identity(l)
+    for t1 in t[1:]:
+        b=np.zeros([m-2,n-2])
+        #b[:,0]=g(xdate[1:-1],0,t1-h0)
+        #b[:,-1]=g(xdate[1:-1],-1,t1-h0)
+        b=b.flatten()
+        u=np.matmul(A1,u)+(h0/(4*(h1**2)))*b
+    u=u.reshape(m-2,n-2)
+    return u.T
+uu=js(0.02)/g(x_0,y_0,0.02)
+print(uu)
+print(g(x_0,y_0,0.1))
+
+
+
