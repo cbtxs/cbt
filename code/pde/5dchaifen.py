@@ -12,7 +12,6 @@ def f(x,y):
 def zj(x,y):
     z=np.cos(3*x)*np.sin(np.pi*y)/(9+np.pi**2)
     return z
-#生成三对角矩阵
 def sdj(a,b,n):
     x=a*np.identity(n)
     for i in range(n):
@@ -54,21 +53,23 @@ def yyy(n):
     for i in range(n-1):
         for j in range(n-1):
             kkk[i,j]=zj(xdate[i+1],ydate[j+1])
+    kkk=kkk.T
     kkk=kkk.flatten()
     #误差
-    error=np.linalg.norm(x-kkk,ord=2)
+    error=abs(x-kkk).max()
     lk=np.matmul(u,x)-b
     b=b.reshape(n-1,n-1)
     x=x.reshape(n-1,n-1)
     x=x.T
     kkk=kkk.reshape(n-1,n-1)
-    return u,kkk[0,:]
+    return u,error
 l,m=yyy(4)
-print(l)
-er=np.zeros([50])
-for i in range(50)[2:]:
-    m,q=yyy(i)
-    print(q)
+er=np.zeros([10])
+for i in range(8)[2:]:
+    print(m)
+    q=copy.deepcopy(m)
+    l,m=yyy(2**i)
+    er[i]=np.log2(q/m)
 print(er)
 
 
