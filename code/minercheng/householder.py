@@ -5,7 +5,7 @@
 '''
 import numpy as np
 import copy
-#householder变换
+#householder变换,输出v和β,即H=I-βvv*,只输出这两个，然后用分配率化简步骤
 def house(x):
     xg=0
     for x1 in x[1:]:

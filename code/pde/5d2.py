@@ -45,9 +45,13 @@ u=np.linalg.solve(A,F)
 u=u.reshape(n+1,n+1)
 x_1,y_1=np.meshgrid(xdate,ydate)
 kkk=zj(x_1,y_1)
-er=abs(u-kkk.T).max()
+er=abs(u[1:-1,1:-1]-kkk.T[1:-1,1:-1]).max()
+err=np.linalg.norm(u[1:-1,1:-1]-kkk.T[1:-1,1:-1],ord=1)/(n-1)**2
+print(u)
+print(kkk.T)
+print(abs(u-kkk.T))
 print('***',er)
-
+print(err)
 
 
 

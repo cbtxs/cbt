@@ -1,13 +1,27 @@
 import numpy as np
 import copy
-import scipy.linalg
-def f(x,y):
-    z=np.cos(3*x)*np.sin(np.pi*y)
-    return -z
-#真解
-def zj(x,y):
-    z=np.cos(3*x)*np.sin(np.pi*y)/(9+np.pi**2)
-    return z
+
+def GS(A,b):
+    (n,n)=A.shape
+    A=A.astype(float)
+    b=b.astype(float)
+    y=copy.deepcopy(b)
+    x=np.zeros(n)
+    x[5]=12
+    er=1
+    while er>1e-10:
+        for i in range(n):
+            for j in range(n):
+                if j<i:
+                    y[i]-=A[i,j]*y[j]
+                elif j>i:
+                    y[i]-=A[i,j]*x[j]
+            y[i]/=A[i,i]
+        er=np.linalg.norm(x-y,ord=2)
+        x=copy.deepcopy(y)
+        y=copy.deepcopy(b)
+    return x
+
 
 n=int(input('n='))
 a,b=0,np.pi
@@ -33,19 +47,20 @@ for i in range(n+1):
             A[i*(n+1)+j,i*(n+1)+j+1]=1/h2**2
             A[i*(n+1)+j,(i-1)*(n+1)+j]=1/h1**2
             A[i*(n+1)+j,(i+1)*(n+1)+j]=1/h1**2
-x_0,y_0=np.meshgrid(xdate[1:-1],ydate[1:-1])
-F=np.zeros([n+1,n+1])
-F[1:-1,1:-1]=f(x_0,y_0)
-F[:,0]=zj(0,ydate)
-F[:,-1]=zj(np.pi,ydate)
-F=F.T
-F=F.flatten()
-u=np.linalg.solve(A,F)
-u=u.reshape(n+1,n+1)
-x_1,y_1=np.meshgrid(xdate,ydate)
-kkk=zj(x_1,y_1)
-er=np.linalg.norm(u[1:-1,1:-1]-kkk.T[1:-1,1:-1],ord=1)/(n-1)**2
-err=abs(u[1:-1,1:-1]-kkk.T[1:-1,1:-1]).max()
-print(er)
-print(err)
+
+
+
+
+
+
+
+aa=np.arange((n+1)**2)
+bb=np.array([np.sum(A,axis=1)])
+print(bb)
+bb=np.matmul(np.diag([aa]),bb),
+print(GS(A,bb))
+
+
+
+
 
