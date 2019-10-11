@@ -8,7 +8,7 @@ def sor(A,b):
     y=copy.deepcopy(b)
     x=np.zeros(n)+5
     er,om=1,1.5
-    while er>1e-10:
+    while er>1e-8:
         for i in range(n):
             for j in range(n):
                 if j<i:
@@ -17,9 +17,19 @@ def sor(A,b):
                     y[i]-=A[i,j]*x[j]
             y[i]/=(A[i,i]/om)
             y[i]+=x[i]
-        er=np.linalg.norm(x-y,ord=2)
         x=copy.deepcopy(y)
         y=copy.deepcopy(b)
+        for i in range(n):
+            i=n-1-i
+            for j in range(n):
+                if j>i:
+                    y[i]-=A[i,j]*y[j]
+                else:
+                    y[i]-=A[i,j]*x[j]
+            y[i]=y[i]/(A[i,i]/om)+x[i]
+        er=np.linalg.norm(x-y,ord=2)
+        x=copy.deepcopy(y)
+        y=copy.deepcopy(b)  
     return x
 
 n=int(input('n='))
@@ -55,7 +65,7 @@ for i in range(n+1):
 
 
 bb=np.sum(A,axis=1)
-aa=np.arange((n+1)**2)+1
+aa=np.arange((n+1)**2)+0.6665415258
 aa=np.diag(aa)
 bb=np.matmul(bb,aa)
 print(sor(A,bb))
