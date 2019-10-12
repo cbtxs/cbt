@@ -4,7 +4,8 @@ def f(x,y):
     z=x**3-y/x
     return z
 a,b=1,2
-h=0.1
+n=int(input('n='))
+h=(b-a)/n
 def g(x):
     y=x**4/5+1/(5*x)
     return y
@@ -21,7 +22,9 @@ for x in xdate[:-1]:
     k3=f(x+h,ydate0[-1]-h*k1+2*h*k2)
     tmp=ydate0[-1]+h*(k1+k2*4+k3)/6
     ydate0=np.append(ydate0,tmp)
-print(ydate0-y0)
+r0=ydate0-y0
+error=abs(r0).max()
+print('error=',error)
 
 #三级四阶显式Heun
 ydate1=copy.deepcopy(ydate)
@@ -31,8 +34,9 @@ for x in xdate[:-1]:
     k3=f(x+2*h/3,ydate1[-1]+2*h*k2/3)
     tmp=ydate1[-1]+h*(k1+k3*3)/4
     ydate1=np.append(ydate1,tmp)
-print(ydate1-y0)
-
+r0=ydate1-y0    
+error=np.linalg.norm(r0,ord=2)/n
+print('error=',error)
 #四级四阶显式kutta
 ydate2=copy.deepcopy(ydate)
 for x in xdate[:-1]:

@@ -1,5 +1,7 @@
 import numpy as np
 import copy
+import time
+start=time.time()
 def givens(a,b):
     x=copy.deepcopy(a)
     y=copy.deepcopy(b)
@@ -36,11 +38,8 @@ def GM(A,b):
             om-=H[j,i]*v[j].T
         H[i+1,i]=np.linalg.norm(om,ord=2)
         v=np.vstack((v,om.T/H[i+1,i]))
-        print(H[:i+2,:i+2])
         for k in range(i):
-            print(Q[i-1])
             H[k:k+2,i]=np.matmul(Q[k],H[k:k+2,i])
-        print(H[:i+2,:i+2])
         G=givens(H[i,i],H[i+1,i])
         H[i:i+2,i]=np.matmul(G,H[i:i+2,i])
         ylon[i:i+2]=np.matmul(G,ylon[i:i+2])
@@ -60,7 +59,6 @@ def GM(A,b):
         return x_m
     else :
         return 'failed'
-
 
 n=int(input('n='))
 a,b=0,np.pi
@@ -86,7 +84,8 @@ for i in range(n+1):
             A[i*(n+1)+j,i*(n+1)+j+1]=1/h2**2
             A[i*(n+1)+j,(i-1)*(n+1)+j]=1/h1**2
             A[i*(n+1)+j,(i+1)*(n+1)+j]=1/h1**2
-        
+A=A.T+A        
 bb=np.array([np.sum(A,axis=1)])
 print(GM(A,bb))
-        
+end=time.time()
+print(end-start)
