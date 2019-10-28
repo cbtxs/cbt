@@ -40,7 +40,7 @@ def QR(a):
         q[:,i:]-=beta*np.matmul(tmp,v)
     return q,a
 #测试
-a=np.array([[1,2,5],[5,4,7],[6,54,8]])
+a=np.array([[154,565,899],[5,4,7],[6,54,8]])
 mm,mmm=QR(a)
 print(mmm)
 print(np.matmul(mm,mmm))

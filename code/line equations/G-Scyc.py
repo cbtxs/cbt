@@ -1,6 +1,7 @@
 import numpy as np
 import copy
-
+import time
+start=time.time()
 def GS(A,b):
     (n,n)=A.shape
     A=A.astype(float)
@@ -55,11 +56,11 @@ for i in range(n+1):
 
 
 aa=np.arange((n+1)**2)
-bb=np.array([np.sum(A,axis=1)])
+bb=np.sum(A,axis=1)
 print(bb)
-bb=np.matmul(np.diag([aa]),bb),
 print(GS(A,bb))
-
+end=time.time()
+print(end-start)
 
 
 
