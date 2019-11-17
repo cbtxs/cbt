@@ -1,7 +1,7 @@
 import numpy as np
 import copy
 import time
-start=time.time()
+
 def GS(A,b):
     (n,n)=A.shape
     A=A.astype(float)
@@ -24,7 +24,10 @@ def GS(A,b):
     return x
 
 
-n=int(input('n='))
+
+
+
+n=3
 a,b=0,np.pi
 c,d=0,1
 h1=(b-a)/n
@@ -48,19 +51,13 @@ for i in range(n+1):
             A[i*(n+1)+j,i*(n+1)+j+1]=1/h2**2
             A[i*(n+1)+j,(i-1)*(n+1)+j]=1/h1**2
             A[i*(n+1)+j,(i+1)*(n+1)+j]=1/h1**2
-
-
-
-
-
-
-
 aa=np.arange((n+1)**2)
-bb=np.sum(A,axis=1)
-print(bb)
-print(GS(A,bb))
+bb=np.einsum('ij,j->i',A,aa)
+start=time.time()
+print(A)
+print('解:',GS(A,bb))
 end=time.time()
-print(end-start)
+print('用时:',end-start,'s')
 
 
 

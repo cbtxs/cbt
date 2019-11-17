@@ -12,9 +12,9 @@ import copy
 star=time.time()
 #计算ff(x)在[a,b]上的积分
 def ff(x):
-    y=np.sqrt(1-x**2)
+    y=np.sin(x)**5
     return y
-a,b=0,1#积分区间
+a,b=0, np.pi/2#积分区间
 error=0.00000001#误差
 def f(x):#积分数值解
     (n,)=x.shape
@@ -42,3 +42,4 @@ while abs(s1-s2)/15>error:
 print('积分值=%f,步长=%f'%(s2,(b-a)/h))
 end=time.time()
 print(end-star)
+print(8/15)

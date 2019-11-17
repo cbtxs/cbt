@@ -1,0 +1,69 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass[12pt,a4paper]{article}
+\input{en_preamble.tex}
+\input{xecjk_preamble.tex}
+
+\title{数值实验}
+\author{陈春雨}
+\date{\chntoday}
+\begin{document}
+\maketitle
+\newpage
+\section{ 数值实验}
+计算讨论课的程序中得到的有限元函数与原函数的误差，以及他们梯度的误差。选取函数为：$y=\cos(x+1)e^{x^2}$\\
+
+\section{ 结果}
+取$p=2$,得到：\\
+\begin{tabular}{|c|c|c|}
+\hline
+加密次数 & 函数误差 & 梯度误差\\
+\hline
+2 & 0.001526286807148913 & 0.04680663991523908\\
+\hline
+3 & 0.000197827185544684 & 0.01222680419685135\\
+\hline
+4 & 0.000024964859092024 & 0.00309199351342261\\
+\hline
+5 & 0.000003128137681046 & 0.00077524652822691\\
+\hline
+\end{tabular}\\
+由表格可以看出计算的函数的误差阶数为3，梯度的误差阶为2。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

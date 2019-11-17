@@ -57,6 +57,7 @@ tdate=np.arange(0,1+h0,h0)
 A=np.eye(n-1)*(-2)+np.eye(n-1,k=1)+np.eye(n-1,k=-1)
 A[0,0],A[-1,-1]=-1,-1
 A=h0/(h1**2)*A-np.identity(n-1)
+print(A)
 #初值
 u=g(xdate[1:-1])
 for t in tdate[1:]:

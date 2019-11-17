@@ -28,11 +28,12 @@ def GM(A,b):
     bate=np.linalg.norm(r0,ord=2)
     itermax=n
     v=r0/bate
+    v=np.array([v])
     H=np.zeros([itermax+1,itermax+1])
     ylon=np.zeros(n+1)
     ylon[0]=bate
     for i in range(itermax):
-        om=np.matmul(A,v[i].T)
+        om=np.einsum('ij,j->i',A,v[i])
         for j in range(i+1):
             H[j,i]=np.dot(v[j],om)
             om-=H[j,i]*v[j].T
@@ -51,7 +52,6 @@ def GM(A,b):
         re=abs(ylon[i+1]/bate)
         if re<1e-10:
             break
-        print(i)
     m=i
     y_m=np.matmul(np.linalg.inv(H[0:m+1,0:m+1]),ylon[0:m+1])
     x_m=np.matmul(v[:-1].T,y_m)+x0
@@ -84,8 +84,35 @@ for i in range(n+1):
             A[i*(n+1)+j,i*(n+1)+j+1]=1/h2**2
             A[i*(n+1)+j,(i-1)*(n+1)+j]=1/h1**2
             A[i*(n+1)+j,(i+1)*(n+1)+j]=1/h1**2
-A=A.T+A        
-bb=np.array([np.sum(A,axis=1)])
-print(GM(A,bb))
+aa=np.arange((n+1)**2)
+bb=np.einsum('ij,j->i',A,aa)
+#print(GM(A,bb))
 end=time.time()
-print(end-start)
+#print(end-start)
+
+
+
+
+
+
+
+
+
+
+
+
+from fealpy.mesh import IntervalMesh
+from scipy.sparse.linalg import spsolve
+from fealpy.functionspace import LagrangeFiniteElementSpace
+def u(x):
+    return np.exp(np.cos(x))
+node=np.array([0,1],dtype=np.float)
+cell=np.array([[0,1]],dtype=np.int)
+mesh=IntervalMesh(node,cell)
+space=LagrangeFiniteElementSpace(mesh,p=4)
+M=space.mass_matrix().toarray()
+F=space.source_vector(u)
+print(M)
+print(GM(M,F))
+print(spsolve(M,F))
+

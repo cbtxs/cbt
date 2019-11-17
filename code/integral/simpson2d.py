@@ -11,18 +11,26 @@ import matplotlib.pyplot as plt
 import copy
 import time
 #计算ff(x,y)在[a,b]x[y1(x),y2(x)]的积分
-star=time.time()
 #定义积分
+bb=float(input('bb='))
+aa=float(input('aa='))
+star=time.time()
 def ff(x,y):#定义ff(x,y)
-    z=np.sqrt(1-x**2-y**2)
-    return z
+    return x
 def y1(x):
-    return 0
+    if -1-aa<x<-1+aa:
+        y=((bb-1)/aa)*x-(1-bb)/aa
+    elif -1+aa<x<1-aa:
+        y=(bb/(aa-1))*x-1
+    else:
+        y=((bb+1)/aa)*(x-1)
+    return y
 def y2(x):
-    return np.sqrt(1/4-(x-1/2)**2)
-a,b=0,1
-error0=0.000000001#含参量积分的误差
-error1=0.00000001#二重积分的误差
+    y=(bb/(1+aa))*x+1
+    return y
+a,b=-1-aa,1+aa
+error0=1e-6#含参量积分的误差
+error1=1e-4#二重积分的误差
 def simposn(x,h):#积分数值解
     (n,)=x.shape
     int1=0
@@ -66,6 +74,7 @@ while abs(s1-s2)/15>error1:
         y[2*i-1]=fy(x[2*i-1])
     h2=(b-a)/(num1/2)
     s2=simposn(y,h2)
-print(s2*2)#积分数值解
+print(s2)#积分数值解
 end=time.time()
 print(end-star)
+print(4*bb/3)

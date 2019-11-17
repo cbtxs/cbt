@@ -1,0 +1,194 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass{article}
+\input{en_preamble.tex}
+\input{xecjk_preamble.tex}
+\begin{document}
+\title{二维分片多项式空间}
+\author{陈春雨}
+\date{\chntoday}
+\maketitle
+\section{分片线性多项式空间}
+给定三角形区域 $I = (x_0, y_0),(x_1,y_1),(x_2,y_2)$, 其上的线性多项式空间定义如下：
+\begin{equation}
+    P_1(I) = \{v: v(x) = c_0 + c_1 x + c_2 y, (x,y)\in I, c_0, c_1 ,c_2\in \mathbb R\},
+\end{equation}
+基函数的选择:重心坐标函数(节点基函数)\\
+
+用$\lambda_0$表示在$(x_0,y_0)$处为1，在$(x_1,y_1),(x_2,y_2)$处为0的一次函数，$\lambda_1$表示在$(x_1,y_1)$处为1，在$(x_0,y_0),(x_2,y_2)$处为0的一次函数，$\lambda_2$表示在$(x_2,y_2)$处为1，在$(x_1,y_1),(x_0,y_0)$处为0的一次函数.\\
+
+$\forall(x,y)\in I$ 假设
+\begin{align*}
+I_0 = (x, y),(x_1,y_1),(x_2,y_2)\\
+I_1 = (x_0, y_0),(x,y),(x_2,y_2)\\
+I_2 = (x_0, y_0),(x_1,y_1),(x,y)\\
+\end{align*}\\
+则由重心坐标函数的性质可知:
+\begin{equation}
+    \lambda_0(x,y) = \frac{s(I_0)}{s(I)}, \lambda_1(x,y) = \frac{s(I_1)}{s(I)}. \lambda_2(x,y) = \frac{s(I_2)}{s(I)}.
+\end{equation}
+
+\section{$k$ 次多项式空间 $P_k(I)$}
+
+给定区间 $I = [x_0, x_1]$, 其上的线性多项式空间定义如下：
+\begin{equation}
+    P_k(I) = \{v: v(x) = c_{00} + c_{10} x + c_{20} x^2 + \cdots + c_{k0} x^k + c_{01} y+ \cdots +c{0k}y^k, (x,y)\in I, c_{00}, c_{10},
+    \cdots c_{k0} \in \mathbb R\},
+\end{equation}
+
+$I$ 上的 $ k\geq 1 $ 次基函数共有 
+
+\[
+n_{dof} = \frac{(k+1)(k+2)}{2},
+\]
+
+其计算公式如下:
+
+\[
+\phi_{m,n,r} = \frac{1}{m!n!r!}\prod_{l_0 = 0}^{m - 1}
+(k\lambda_0 - l_0) \prod_{l_1 = 0}^{n-1}(k\lambda_1 -
+l_1)\prod_{l_2 = 0}^{r-1}(k\lambda_2 -
+l_2).
+\]
+
+其中 $ m\geq 0$, $ n\geq 0 $,$ r\geq 0 $, 且 $ m+n+r=k $, 这里规定:
+
+\[
+ \prod_{l_i=0}^{-1}(k\lambda_i - l_i) := 1,\quad i=0, 1, 2
+\]
+
+$k$ 次基函数的面向数组的计算
+构造向量： 
+
+\[
+P = ( \frac{1}{0!},  \frac{1}{1!}, \frac{1}{2!}, \cdots, \frac{1}{k!})
+\]
+
+构造矩阵： 
+
+\[
+A :=
+\begin{pmatrix}
+1  &  1  &  1 \\
+k\lambda_0 & k\lambda_1  & k\lambda_2\\
+k\lambda_0 - 1 & k\lambda_1 - 1 & k\lambda_2 - 1\\
+\vdots & \vdots  & \vdots\\
+k\lambda_0 - (k - 1) & k\lambda_1 - (k - 1) & k\lambda_2 - (k - 1)
+\end{pmatrix}
+\]
+
+对 $A$ 的每一列做累乘运算, 并左乘由 $P$ 形成的对角矩阵, 得矩阵:
+
+\[
+B = \mathrm{diag}(P)
+\begin{pmatrix}
+1 & 1 & 1\\
+\lambda_0 & \lambda_1 & \lambda_2\\
+\prod_{l=0}^{1}(k\lambda_0 - l) & \prod_{l=0}^{1}(k\lambda_1 - l) & \prod_{l=0}^{1}(k\lambda_2 - l)\\
+\vdots & \vdots & \vdots\\
+\prod_{l=0}^{k-1}(k\lambda_0 - l) & \prod_{l=0}^{k-1}(k\lambda_1 - l)  & \prod_{l=0}^{k-1}(k\lambda_2 - l)
+\end{pmatrix}
+\]
+
+易知, 只需从 $B$ 的每一列中各选择一项相乘(要求三项次数之和为 $k$,
+其中取法共有
+
+\[
+n_{dof} = \frac{(k+1)(k+2)}{2}
+\]
+
+构造指标矩阵：
+\[
+I = \begin{pmatrix}
+k  & 0 & 0\\ k-1 & 0 & 1 \\ k-1 & 1 & 0 \\ k-2 & 0 & 2 \\ \vdots & \vdots \\ 0 & k & 0
+\end{pmatrix}
+\]
+则第 $i$ 个 $k$ 次基函数可写成如下形式
+\[
+\phi_i = B_{m,0}B_{n,1}B_{r,2}, 
+\]
+其中 $ m = I_{i, 0}, n = I_{i, 1}  r = I_{i, 2}$, 并且 $ m + n + r = k$.
+
+\begin{align*}
+    \nabla \prod_{j = 0}^{m - 1} (k\lambda_0 - j)
+    = & k\sum_{j=0}^{m - 1}\prod_{0\le l \le m-1, l\not= j}(k\lambda_0 -
+    l)\nabla \lambda_0,\\
+    \nabla \prod_{j = 0}^{n - 1} (k\lambda_1 - j)
+    = & k\sum_{j=0}^{n - 1}\prod_{0\le l \le n-1, l\not= j}(k\lambda_1 -
+    l)\nabla \lambda_1,\\
+    \nabla \prod_{j = 0}^{r - 1} (k\lambda_2 - j)
+    = & k\sum_{j=0}^{r - 1}\prod_{0\le l \le r-1, l\not= j}(k\lambda_2 -
+    l)\nabla \lambda_2,\\
+\end{align*}
+\begin{align*}
+\bfD^0 = 
+\begin{pmatrix}
+k & k\lambda_0 & \cdots & k\lambda_0 \\
+k\lambda_0 - 1 & k & \cdots & k\lambda_0 - 1 \\
+\vdots & \vdots & \ddots & \vdots \\
+k\lambda_0 - (k-1) & k\lambda_0 - (k-1) & \cdots & k 
+\end{pmatrix},\\ 
+\bfD^1 = 
+\begin{pmatrix}
+k & k\lambda_1 & \cdots & k\lambda_1 \\
+k\lambda_1 - 1 & k & \cdots & k\lambda_1 - 1 \\
+\vdots & \vdots & \ddots & \vdots \\
+k\lambda_1 - (k-1) & k\lambda_1 - (k-1) & \cdots & k 
+\end{pmatrix},\\ 
+\bfD^1 = 
+\begin{pmatrix}
+k & k\lambda_2 & \cdots & k\lambda_2 \\
+k\lambda_2 - 1 & k & \cdots & k\lambda_2 - 1 \\
+\vdots & \vdots & \ddots & \vdots \\
+k\lambda_2 - (k-1) & k\lambda_2 - (k-1) & \cdots & k 
+\end{pmatrix},\\
+\end{align*}
+把 $\bfD^0$,$\bfD^1$ 和 $\bfD^2$ 的每一列沿行的方向做累乘运算，然后取它们的下三角矩阵，
+最后把下三角矩阵的每一行再求和，即可得到矩阵 $\bfB$ 的每一列各个元素的求导后系
+数. 可得到矩阵 $\bfD$，其元素定义为 
+$$
+\bfD_{i,j} = \sum_{m=0}^j\prod_{k=0}^j D^i_{k, m},\quad 0 \le i \le 2,
+, 0 \le j \le k-1.
+$$
+最后，可以用如下的方式来计算 $\bfB$ 的梯度：
+\begin{equation*}
+\begin{aligned}
+\nabla \bfB = & \mathrm{diag}(\bfP)
+\begin{pmatrix}
+0 & 0 & 0\\
+\bfD_{0,0} \nabla \lambda_0 & 
+\bfD_{1,0} \nabla \lambda_1 &
+\bfD_{2,0} \nabla \lambda_2\\
+\vdots & \vdots\\
+\bfD_{0, k-1} \nabla \lambda_0 &
+\bfD_{1, k-1} \nabla \lambda_1 & 
+\bfD_{2, k-1} \nabla \lambda_2 
+\end{pmatrix}\\
+= & \mathrm{diag}(\bfP)
+\begin{pmatrix}
+\mathbf 0\\
+\bfD
+\end{pmatrix}
+\begin{pmatrix}
+\nabla \lambda_0 \\
+ & \nabla \lambda_1 \\
+ & & \nabla \lambda_2\\
+\end{pmatrix}\\
+= & \bfF 
+\begin{pmatrix}
+\nabla \lambda_0 \\
+ & \nabla \lambda_1 \\
+ & & \nabla \lambda_2\\
+\end{pmatrix},
+\end{aligned}
+\end{equation*}
+其中
+\begin{equation}\label{eq:F}
+    \bfF = \mathrm{diag}(\bfP)
+\begin{pmatrix} 
+    \mathbf 0\\ \bfD
+\end{pmatrix}.
+\end{equation}
+
+
+
+\end{document}
