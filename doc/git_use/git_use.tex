@@ -1,0 +1,66 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass{article}
+\input{en_preamble.tex}
+\input{xecjk_preamble.tex}
+\begin{document}
+
+\title{git基本使用}
+\author{陈春雨}
+\maketitle
+\section{基本操作}
+\begin{listing}[H]
+    \begin{pythoncode}
+    #在 github/gitlab 的仓库中复制仓库链接 URL, 使用下面代码将仓库克隆下来.
+    git clone URL
+
+
+
+    #查看当前仓库状态:(显示上次上传后仓库的改变)
+    git status
+    
+    git diff                 #查看仓库未暂存的改动
+    
+    git diff --cached        #查看仓库已经暂存的改动
+
+
+
+    #上传文件
+    git pull                 #将远端仓库的更新拉下来
+
+    git add .                #将仓库所有的改变, 暂存起来
+
+    git commit -m'update'    #提交暂存的文件并添加注释 update)
+
+    git pull                 #再次检查是否与远端一致
+
+    git push (#上传)
+
+
+
+    #在仓库中添加 .gitignort 文件
+    *.[a0]                   #表示不上传 .a 或 .o 结尾的文件
+
+    *~                       #表示不上传以 ~ 结尾的文件
+
+    *.pdf                    #表示不上传pdf, 以此类推,不需要上传的就可以添加进来
+
+    !main.pdf                #表示 main.pdf 文件可以上传上去
+
+    doc/**/*.pdf             #表示 doc 文件夹里的 .pdf 文件不上传
+    
+    
+    
+    #远程仓库
+    git remote -v            #查看远程仓库的命名和链接
+    
+    git remote rename        #给远程仓库重命名
+    
+    git remote add origin URL       #添加一个名为 origin 的网址为 URL 的远端仓库
+    \end{pythoncode}
+\end{listing}
+
+
+\cite{fem_2010}
+\bibliographystyle{abbrv}
+\bibliography{ref}
+\end{document}

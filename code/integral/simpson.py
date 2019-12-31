@@ -12,9 +12,9 @@ import copy
 star=time.time()
 #计算ff(x)在[a,b]上的积分
 def ff(x):
-    y=np.sin(x)**5
+    y = -(np.sin(x)**4 + np.cos(x)**5)*np.sin(x)*np.cos(x)
     return y
-a,b=0, np.pi/2#积分区间
+a,b=np.pi/2, np.pi#积分区间
 error=0.00000001#误差
 def f(x):#积分数值解
     (n,)=x.shape

@@ -13,11 +13,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import copy
 
-a,b=0,1           # 区间（a,b）
-c=1           # 初值解y(a)=c
-h=0.1       # 剖分N次
+a, b = 0, 10           # 区间（a,b）
+c = 10          # 初值解y(a)=c
+h = 0.01       # 剖分N次
 def f(x,y):
-    k=y
+    k = 5000*y - 250*y**2
     return k
 def j(x):
     z=np.exp(x)
@@ -33,6 +33,7 @@ for x in xdate[:-1]:
         k=f(x+h/2,ydate[-1]+h*l/2)
     m=ydate[-1]+k*h
     ydate=np.append(ydate,m)
+print(ydate)
 plt.ylabel('erro')
 plt.xlabel('x')
 plt.plot(xdate,ydate-ydate2)

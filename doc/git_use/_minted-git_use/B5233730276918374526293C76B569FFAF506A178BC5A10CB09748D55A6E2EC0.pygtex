@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{}在 github/gitlab 的仓库中复制仓库链接 URL, 使用下面代码将仓库克隆下来.}
+\PYG{n}{git} \PYG{n}{clone} \PYG{n}{URL}
+
+
+
+\PYG{c+c1}{\PYGZsh{}查看当前仓库状态:(显示上次上传后仓库的改变)}
+\PYG{n}{git} \PYG{n}{status}
+
+\PYG{n}{git} \PYG{n}{diff}                 \PYG{c+c1}{\PYGZsh{}查看仓库未暂存的改动}
+
+\PYG{n}{git} \PYG{n}{diff} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZhy{}}\PYG{n}{cached}        \PYG{c+c1}{\PYGZsh{}查看仓库已经暂存的改动}
+
+
+
+\PYG{c+c1}{\PYGZsh{}上传文件}
+\PYG{n}{git} \PYG{n}{pull}                 \PYG{c+c1}{\PYGZsh{}将远端仓库的更新拉下来}
+
+\PYG{n}{git} \PYG{n}{add} \PYG{o}{.}                \PYG{c+c1}{\PYGZsh{}将仓库所有的改变, 暂存起来}
+
+\PYG{n}{git} \PYG{n}{commit} \PYG{o}{\PYGZhy{}}\PYG{n}{m}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{update}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{}提交暂存的文件并添加注释 update)}
+
+\PYG{n}{git} \PYG{n}{pull}                 \PYG{c+c1}{\PYGZsh{}再次检查是否与远端一致}
+
+\PYG{n}{git} \PYG{n}{push} \PYG{p}{(}\PYG{c+c1}{\PYGZsh{}上传)}
+
+
+
+\PYG{c+c1}{\PYGZsh{}在仓库中添加 .gitignort 文件}
+\PYG{o}{*}\PYG{o}{.}\PYG{p}{[}\PYG{n}{a0}\PYG{p}{]}                   \PYG{c+c1}{\PYGZsh{}表示不上传 .a 或 .o 结尾的文件}
+
+\PYG{o}{*}\PYG{o}{\PYGZti{}}                       \PYG{c+c1}{\PYGZsh{}表示不上传以 \PYGZti{} 结尾的文件}
+
+\PYG{o}{*}\PYG{o}{.}\PYG{n}{pdf}                    \PYG{c+c1}{\PYGZsh{}表示不上传pdf, 以此类推,不需要上传的就可以添加进来}
+
+\PYG{err}{!}\PYG{n}{main}\PYG{o}{.}\PYG{n}{pdf}                \PYG{c+c1}{\PYGZsh{}表示 main.pdf 文件可以上传上去}
+
+\PYG{n}{doc}\PYG{o}{/}\PYG{o}{*}\PYG{o}{*}\PYG{o}{/}\PYG{o}{*}\PYG{o}{.}\PYG{n}{pdf}             \PYG{c+c1}{\PYGZsh{}表示 doc 文件夹里的 .pdf 文件不上传}
+
+
+
+\PYG{c+c1}{\PYGZsh{}远程仓库}
+\PYG{n}{git} \PYG{n}{remote} \PYG{o}{\PYGZhy{}}\PYG{n}{v}            \PYG{c+c1}{\PYGZsh{}查看远程仓库的命名和链接}
+
+\PYG{n}{git} \PYG{n}{remote} \PYG{n}{rename}        \PYG{c+c1}{\PYGZsh{}给远程仓库重命名}
+
+\PYG{n}{git} \PYG{n}{remote} \PYG{n}{add} \PYG{n}{origin} \PYG{n}{URL}       \PYG{c+c1}{\PYGZsh{}添加一个名为 origin 的网址为 URL 的远端仓库}
+\end{Verbatim}

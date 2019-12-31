@@ -3,11 +3,11 @@ import copy
 def f(x,y):
     z=x**3-y/x
     return z
-a,b=1,2
+a,b=0, 100
 n=int(input('n='))
 h=(b-a)/n
 def g(x):
-    y=x**4/5+1/(5*x)
+    y = 2
     return y
 xdate=np.arange(a,b+h,h)
 y0=g(xdate)
