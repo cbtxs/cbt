@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-x,y=1/3,1/4
+x,y=0,0
 #直角坐标系下的坐标
 
 x_qd=np.array([1+x,-1-x,-1+x,1-x,1+x])#四边形坐标
@@ -13,9 +13,9 @@ A=np.array([[1,np.sqrt(2)/4],[0,3*np.sqrt(2)/4]])#变换矩阵
 
 
 #原四边形
-qurd=np.array([x_qd,y_qd])
-x_qd=np.matmul(A[0,:],qurd)
-y_qd=np.matmul(A[1,:],qurd)
+#qurd=np.array([x_qd,y_qd])
+#x_qd=np.matmul(A[0,:],qurd)
+#y_qd=np.matmul(A[1,:],qurd)
 s_qd = ['$A_0$','$A_1$', '$A_2$', '$A_3$', '$A_0$']
 
 #平行四边形

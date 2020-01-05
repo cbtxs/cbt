@@ -59,35 +59,12 @@ def GM(A,b):
         return x_m
     else :
         return 'failed'
-A=np.array([[6,3],[3,2]])
-b=np.array([0,-1])
-print(GM(A,bb))
+
+
+A = np.array([[0, 1, 0,0,0 ],[0,0,1,0,0],[0,0,0,1,0],[0,0,0,0,1],[1,2,3,4,0]])
+b=np.array([1,0,0,0,0])
+print(GM(A,b))
 end=time.time()
 print(end-start)
 
-
-
-
-
-
-
-
-
-
-
-
-from fealpy.mesh import IntervalMesh
-from scipy.sparse.linalg import spsolve
-from fealpy.functionspace import LagrangeFiniteElementSpace
-def u(x):
-    return np.exp(np.cos(x))
-node=np.array([0,1],dtype=np.float)
-cell=np.array([[0,1]],dtype=np.int)
-mesh=IntervalMesh(node,cell)
-space=LagrangeFiniteElementSpace(mesh,p=4)
-M=space.mass_matrix().toarray()
-F=space.source_vector(u)
-print(M)
-print(GM(M,F))
-print(spsolve(M,F))
 

@@ -42,6 +42,7 @@ def givenstrun(G,A,i,j):
     return A
 def eigenvalue(x):
     A=x.astype(float)
+    print(A.shape)
     (n,n)=A.shape
     #将A化为上Hessenberg矩阵
     for i in range(n-2):
@@ -68,11 +69,14 @@ def eigenvalue(x):
     err1+=lam
     print(k)
     return err1
-x=np.diag([1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9])
-np.random.seed(0)
-T=10*np.random.random(size=(9,9))
+
+n=20
+x=np.diag(np.arange(n))
+print(x.shape)
+np.random.seed(5)
+T=10*np.random.random(size=(n, n))
 t=np.linalg.inv(T)
-y=np.matmul(T,x)
+y=np.einsum('ij,jk->ik',T,x)
 z=np.matmul(y,t)
 zz=eigenvalue(z)
 print(zz)
