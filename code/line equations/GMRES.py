@@ -61,7 +61,7 @@ def GM(A,b):
         return 'failed'
 A=np.array([[6,3],[3,2]])
 b=np.array([0,-1])
-print(GM(A,bb))
+print(GM(A,b))
 end=time.time()
 print(end-start)
 
@@ -84,6 +84,7 @@ def u(x):
 node=np.array([0,1],dtype=np.float)
 cell=np.array([[0,1]],dtype=np.int)
 mesh=IntervalMesh(node,cell)
+mesh.uniform()
 space=LagrangeFiniteElementSpace(mesh,p=4)
 M=space.mass_matrix().toarray()
 F=space.source_vector(u)
